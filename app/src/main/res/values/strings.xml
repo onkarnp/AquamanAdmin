@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AquamanAdmin</string>
+    <string name="logo1">Main Logo</string>
+    <string name="Aquaman">Aquaman</string>
+    <string name="adminApp">Admin app</string>
+    <string name="adminApplication">Admin Application</string>
+    <string name="aquamanTitle">_ Aquaman _</string>
 </resources>
