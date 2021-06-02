@@ -5,4 +5,17 @@
     <string name="adminApp">Admin app</string>
     <string name="adminApplication">Admin Application</string>
     <string name="aquamanTitle">_ Aquaman _</string>
+    <string name="logo">logo</string>
+    <string name="fullName">Full Name</string>
+    <string name="homeAddress">Home Address</string>
+    <string name="signUp">Sign Up</string>
+    <string name="mobileNumber">Mobile Number</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="alreadyHaveAnAccount">Already have an account ?</string>
+    <string name="logIn">Log In</string>
+    <string name="showPassword">Show Password</string>
+    <string name="forgotPassword">Forgot Password</string>
+    <string name="notRegisteredYet">Not Registered Yet ?</string>
 </resources>
