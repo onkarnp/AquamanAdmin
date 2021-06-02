@@ -18,4 +18,8 @@
     <string name="showPassword">Show Password</string>
     <string name="forgotPassword">Forgot Password</string>
     <string name="notRegisteredYet">Not Registered Yet ?</string>
+    <string name="Dashboard">Admin\'s Dashboard</string>
+    <string name="helloThere">Hello there,</string>
+    <string name="profileIcon">Profile Icon</string>
+    <string name="Profile">Profile</string>
 </resources>
