@@ -25,6 +25,7 @@ import java.util.Calendar;
 
 public class OrderActivity extends AppCompatActivity {
     private ListView listView;
+    private EditText date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class OrderActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();                    //hides action bar
         setContentView(R.layout.order_activity);
-       EditText date = (EditText) findViewById(R.id.date);
+        date = findViewById(R.id.date);
         Button Order=findViewById(R.id.order);
         Calendar cal= Calendar.getInstance();
 
@@ -47,7 +48,7 @@ public class OrderActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month=month+1;
-                        String d=dayOfMonth+"-"+month+"-"+ year;
+                        String d =dayOfMonth+"-"+month+"-"+ year;
                         date.setText(d);
                     }
                 },year,month,day);
@@ -57,7 +58,6 @@ public class OrderActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-        String dateString = date.getText().toString();
         listView=findViewById(R.id.list);
         ArrayList<String> list=new ArrayList<>();
         ArrayAdapter adapter=new ArrayAdapter<String>(this,R.layout.list_item,list);
@@ -65,15 +65,17 @@ public class OrderActivity extends AppCompatActivity {
         Order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String dateString = date.getText().toString();
                 DatabaseReference reference= FirebaseDatabase.getInstance().getReference("orders");
-                reference.child("3-6-2021").addValueEventListener(new ValueEventListener() {
+                reference.child(dateString).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                         list.clear();
                         for(DataSnapshot snapshot:datasnapshot.getChildren())
                         {
                             Orderinfo info=snapshot.getValue(Orderinfo.class);
-                            String s= "Date:"+info.getDate()+"\n"+"Price:"+info.getPrice()+"\n"+"Status:"+info.getStatus()+"\n"+"Summary:"+info.getSummary();
+                            String s= "Name:"+info.getName()+"\nDate:"+info.getDate()+"\n"+"Price:"+info.getPrice()+"\n"+"Status:"+info.getStatus()+"\n"+"Summary:"+info.getSummary()+"\nAddress:"+info.getAddress();
                             list.add(s);
                         }
                         adapter.notifyDataSetChanged();

@@ -5,17 +5,36 @@ public class Orderinfo {
     private String date;
     private String status;
     private String summary;
+    private String address;
+    private String name;
 
     public Orderinfo() {
     }
 
-    public Orderinfo(String price, String date, String status, String summary) {
+    public Orderinfo(String price, String date, String status, String summary,String address,String name) {
         this.price = price;
         this.date = date;
         this.status = status;
         this.summary = summary;
+        this.address=address;
+        this.name=name;
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public String getPrice() {
         return price;
@@ -32,6 +51,7 @@ public class Orderinfo {
     public String getSummary() {
         return summary;
     }
+
 
     public void setPrice(String price) {
         this.price = price;
