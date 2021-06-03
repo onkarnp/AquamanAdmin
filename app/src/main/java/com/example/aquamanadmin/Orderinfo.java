@@ -1,19 +1,23 @@
 package com.example.aquamanadmin;
 
 public class Orderinfo {
-    private int price;
+    private String price;
     private String date;
     private String status;
     private String summary;
 
-    public Orderinfo(int price, String date, String status, String summary) {
+    public Orderinfo() {
+    }
+
+    public Orderinfo(String price, String date, String status, String summary) {
         this.price = price;
         this.date = date;
         this.status = status;
         this.summary = summary;
     }
 
-    public int getPrice() {
+
+    public String getPrice() {
         return price;
     }
 
@@ -29,7 +33,7 @@ public class Orderinfo {
         return summary;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

@@ -66,14 +66,14 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DatabaseReference reference= FirebaseDatabase.getInstance().getReference("orders");
-                reference.child(dateString).addValueEventListener(new ValueEventListener() {
+                reference.child("3-6-2021").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                         list.clear();
                         for(DataSnapshot snapshot:datasnapshot.getChildren())
                         {
                             Orderinfo info=snapshot.getValue(Orderinfo.class);
-                            String s= info.getDate()+":"+info.getPrice()+":"+info.getStatus()+":"+info.getSummary();
+                            String s= "Date:"+info.getDate()+"\n"+"Price:"+info.getPrice()+"\n"+"Status:"+info.getStatus()+"\n"+"Summary:"+info.getSummary();
                             list.add(s);
                         }
                         adapter.notifyDataSetChanged();

@@ -61,7 +61,6 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                String userID = mAuth.getCurrentUser().getUid();
                 String email1 = loginEmail.getText().toString();
                 reference.orderByChild("email").equalTo(email1)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
