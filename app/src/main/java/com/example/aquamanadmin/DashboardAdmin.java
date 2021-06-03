@@ -10,7 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class DashboardAdmin extends AppCompatActivity {
-    public CardView profileCard,orderCard;
+    public CardView userCard,orderCard,logOutCard,profileCard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +25,22 @@ public class DashboardAdmin extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),OrderActivity.class);
                 startActivity(intent);
             }
-    });
+        });
+        logOutCard = (CardView)findViewById(R.id.logOutCard);
+        logOutCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),LogInActivity.class);
+                startActivity(intent);
+            }
+        });
+        profileCard = (CardView)findViewById(R.id.profile1Card);
+        profileCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Profile.class);
+                startActivity(intent);
+            }
+        });
 };
 }
