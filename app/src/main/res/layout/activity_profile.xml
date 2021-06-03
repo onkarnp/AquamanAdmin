@@ -87,7 +87,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:src="@drawable/ic_person" />
+                    android:src="@drawable/ic_person"
+                    android:layout_gravity="center_vertical"/>
 
                 <TextView
                     android:id="@+id/fullName"
@@ -96,7 +97,8 @@
                     android:padding="15dp"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"/>
             </LinearLayout>
 
             <LinearLayout
@@ -109,7 +111,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:src="@drawable/ic_home" />
+                    android:src="@drawable/ic_home"
+                    android:layout_gravity="center_vertical"/>
 
                 <TextView
                     android:id="@+id/homeAddress"
@@ -118,7 +121,8 @@
                     android:padding="15dp"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"/>
             </LinearLayout>
 
             <LinearLayout
@@ -131,7 +135,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:src="@drawable/ic_phone" />
+                    android:src="@drawable/ic_phone"
+                    android:layout_gravity="center_vertical"/>
 
                 <TextView
                     android:id="@+id/phoneNumber"
@@ -140,7 +145,8 @@
                     android:padding="15dp"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"/>
             </LinearLayout>
 
             <LinearLayout
@@ -153,7 +159,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
-                    android:src="@drawable/ic_email" />
+                    android:src="@drawable/ic_email"
+                    android:layout_gravity="center_vertical"/>
 
                 <TextView
                     android:id="@+id/email"
@@ -162,7 +169,8 @@
                     android:padding="15dp"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"/>
             </LinearLayout>
         </LinearLayout>
 
