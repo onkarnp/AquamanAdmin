@@ -34,7 +34,7 @@ public class DashboardAdmin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        profileCard = (CardView)findViewById(R.id.profile1Card);
+        profileCard = (CardView)findViewById(R.id.profileCard);
         profileCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
