@@ -1,16 +1,22 @@
 package com.example.aquamanadmin;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class DashboardAdmin extends AppCompatActivity {
     public CardView userCard,orderCard,logOutCard,profileCard;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +36,28 @@ public class DashboardAdmin extends AppCompatActivity {
         logOutCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),LogInActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DashboardAdmin.this);
+                alertDialogBuilder.setTitle("Confirm Exit..!!");
+                alertDialogBuilder.setIcon(R.drawable.ic_exit);
+                alertDialogBuilder.setMessage("Are you sure ?");
+                alertDialogBuilder.setCancelable(false);
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getApplicationContext(),LogInActivity.class);
+                        mAuth.signOut();
+                        startActivity(intent);
+                        Toast.makeText(DashboardAdmin.this,"Logged out successfully",Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                });
+                alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(DashboardAdmin.this,"Cancelled..",Toast.LENGTH_LONG).show();
+                    }
+                });
+                alertDialogBuilder.show();
             }
         });
         profileCard = (CardView)findViewById(R.id.profileCard);

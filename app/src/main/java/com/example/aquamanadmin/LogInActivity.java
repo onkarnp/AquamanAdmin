@@ -55,6 +55,9 @@ public class LogInActivity extends AppCompatActivity {
         forgotPassword = findViewById(R.id.forgotPassword);
         loadingBar = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser() != null){
+            startActivity(new Intent(LogInActivity.this,DashboardAdmin.class));
+        }
         reference = FirebaseDatabase.getInstance().getReference().child("admins");
 
         LogInButton.setOnClickListener(new View.OnClickListener(){
