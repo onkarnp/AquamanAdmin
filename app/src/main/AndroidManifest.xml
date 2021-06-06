@@ -13,6 +13,8 @@
         <activity android:name=".Profile" />
         <activity android:name=".DashboardAdmin" />
         <activity android:name=".SignUpActivity" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".UserActivity" />
         <activity android:name=".LogInActivity" />
         <activity android:name=".OrderActivity" />
         <activity android:name=".MainActivity">
