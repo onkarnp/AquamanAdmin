@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class DashboardAdmin extends AppCompatActivity {
-    public CardView userCard,orderCard,logOutCard,profileCard,historyCard;
+    public CardView userCard,orderCard,logOutCard,profileCard,historyCard,aboutUsCard;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +81,14 @@ public class DashboardAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(getApplicationContext(),UserActivity.class);
+                startActivity(intent);
+            }
+        });
+        aboutUsCard= (CardView)findViewById(R.id.aboutUsCard);
+        aboutUsCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),AboutUs.class);
                 startActivity(intent);
             }
         });

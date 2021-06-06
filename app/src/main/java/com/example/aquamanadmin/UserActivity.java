@@ -35,34 +35,28 @@ public class UserActivity extends AppCompatActivity {
         ArrayList<String> list=new ArrayList<>();
         ArrayAdapter adapter=new ArrayAdapter<String>(this,R.layout.list_item,list);
         listView.setAdapter(adapter);
-        Button userbutton=findViewById(R.id.usersbutton);
-        userbutton.setOnClickListener(new View.OnClickListener() {
+
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference("users");
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("users");
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                        list.clear();
-                        for(DataSnapshot snapshot:datasnapshot.getChildren())
-                        {
-                            UserInfo info=snapshot.getValue(UserInfo.class);
-                            String s= "email:"+info.getEmail()+"\nFullName:"+info.getFullname()+"\nHome Address:"+info.getHomeaddress()+"\nMobile NO:"+info.getMobileNo();
-                            list.add(s);
-                        }
-                        adapter.notifyDataSetChanged();
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                list.clear();
+                for(DataSnapshot snapshot:datasnapshot.getChildren())
+                {
+                    UserInfo info=snapshot.getValue(UserInfo.class);
+                    String s= "email:"+info.getEmail()+"\nFullName:"+info.getFullname()+"\nHome Address:"+info.getHomeaddress()+"\nMobile NO:"+info.getMobileNo();
+                    list.add(s);
+                }
+                adapter.notifyDataSetChanged();
+            }
 
 
-                    }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
             }
         });
+
 
     }
 }
