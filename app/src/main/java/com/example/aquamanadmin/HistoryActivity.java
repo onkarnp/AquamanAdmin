@@ -53,10 +53,15 @@ public class HistoryActivity extends AppCompatActivity {
                         for(DataSnapshot snapshot:datasnapshot.getChildren())
                         {
                             for(DataSnapshot snap:snapshot.getChildren()) {
-                                Orderinfo info = snap.getValue(Orderinfo.class);
-                                if(info.getName().equals(Name)) {
-                                        list.add(info);
-                                    }
+
+                                String n= String.valueOf(snap.child("name").getValue());
+                                if(n.equals(Name))
+                                {
+                                    Orderinfo info=snap.getValue(Orderinfo.class);
+                                    String s = "Name:" + info.getName() + "\nDate:" + info.getDate() + "\n" + "Price:" + info.getPrice() + "\n" + "Status:" + info.getStatus() + "\n" + "Summary:" + info.getSummary() + "\nAddress:" + info.getAddress();
+                                    list.add(info);
+
+                                }
                             }
 
                         }
