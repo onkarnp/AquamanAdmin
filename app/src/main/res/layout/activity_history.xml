@@ -79,10 +79,10 @@
             android:textColorHint="#FFFFFF"
             />
         <Button
-            android:id="@+id/order"
+            android:id="@+id/historyButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="My History"
+            android:text="View History"
             android:textColor="#000000"
             app:backgroundTint="#FFFFFF"
             android:background="@drawable/button_bg"
@@ -90,8 +90,8 @@
             />
 
 
-        <ListView
-            android:id="@+id/list"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/historyList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"

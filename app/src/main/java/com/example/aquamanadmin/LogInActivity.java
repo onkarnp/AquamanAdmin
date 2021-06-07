@@ -57,6 +57,7 @@ public class LogInActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser() != null){
             startActivity(new Intent(LogInActivity.this,DashboardAdmin.class));
+            finish();
         }
         reference = FirebaseDatabase.getInstance().getReference().child("admins");
 

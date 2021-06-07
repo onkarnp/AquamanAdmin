@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -13,6 +12,8 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +27,9 @@ import java.util.Calendar;
 public class OrderActivity extends AppCompatActivity {
     private ListView listView;
     private EditText date;
+    RecyclerView recyclerView;
+    MyAdapter myAdapter;
+    ArrayList<Orderinfo> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +39,15 @@ public class OrderActivity extends AppCompatActivity {
         getSupportActionBar().hide();                    //hides action bar
         setContentView(R.layout.order_activity);
         date = findViewById(R.id.date);
-        Button Order=findViewById(R.id.order);
+        Button Order=findViewById(R.id.historyButton);
         Calendar cal= Calendar.getInstance();
+        recyclerView=findViewById(R.id.orderList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        list= new ArrayList<>();
+        myAdapter = new MyAdapter(this,list);
+        recyclerView.setAdapter(myAdapter);
+
 
         date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,21 +63,21 @@ public class OrderActivity extends AppCompatActivity {
                         date.setText(d);
                     }
                 },year,month,day);
-                //Disables past date
-                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
+
                 //Show date picker dialog
                 datePickerDialog.show();
             }
         });
-        listView=findViewById(R.id.list);
-        ArrayList<String> list=new ArrayList<>();
-        ArrayAdapter adapter=new ArrayAdapter<String>(this,R.layout.list_item,list);
-        listView.setAdapter(adapter);
+
         Order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String dateString = date.getText().toString();
+                if(dateString.isEmpty()){
+                    showError(date,"Empty field is not allowed.");
+                    return;
+                }
                 DatabaseReference reference= FirebaseDatabase.getInstance().getReference("orders");
                 reference.child(dateString).addValueEventListener(new ValueEventListener() {
                     @Override
@@ -76,9 +87,9 @@ public class OrderActivity extends AppCompatActivity {
                         {
                             Orderinfo info=snapshot.getValue(Orderinfo.class);
                             String s= "Name:"+info.getName()+"\nDate:"+info.getDate()+"\n"+"Price:"+info.getPrice()+"\n"+"Status:"+info.getStatus()+"\n"+"Summary:"+info.getSummary()+"\nAddress:"+info.getAddress();
-                            list.add(s);
+                            list.add(info);
                         }
-                        adapter.notifyDataSetChanged();
+                        myAdapter.notifyDataSetChanged();
 
                     }
 
@@ -89,6 +100,12 @@ public class OrderActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+    //Function to show error message when input is not in correct format
+    public void showError(EditText input, String s)
+    {
+        input.setError(s);
+        input.requestFocus();
     }
 }
 

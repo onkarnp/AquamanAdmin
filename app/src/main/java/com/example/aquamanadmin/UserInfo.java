@@ -9,10 +9,10 @@ public class UserInfo {
     public UserInfo() {
     }
 
-    public UserInfo(String email, String fullname, String homeaddress, String mobileNo) {
+    public UserInfo(String email, String fullname, String homeAddress, String mobileNo) {
         this.email = email;
         this.fullName = fullname;
-        this.homeAddress = homeaddress;
+        this.homeAddress = homeAddress;
         this.mobileNo = mobileNo;
     }
 
