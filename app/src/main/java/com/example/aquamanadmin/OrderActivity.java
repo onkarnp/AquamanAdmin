@@ -86,7 +86,6 @@ public class OrderActivity extends AppCompatActivity {
                         for(DataSnapshot snapshot:datasnapshot.getChildren())
                         {
                             Orderinfo info=snapshot.getValue(Orderinfo.class);
-                            String s= "Name:"+info.getName()+"\nDate:"+info.getDate()+"\n"+"Price:"+info.getPrice()+"\n"+"Status:"+info.getStatus()+"\n"+"Summary:"+info.getSummary()+"\nAddress:"+info.getAddress();
                             list.add(info);
                         }
                         myAdapter.notifyDataSetChanged();
