@@ -28,6 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     Context context;
     ArrayList<Orderinfo> list;
 
+
     public MyAdapter(Context context, ArrayList<Orderinfo> list) {
         this.context = context;
         this.list = list;
@@ -64,6 +65,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                         ///Function to change status in the database
                         setOrderStatus(holder,"Delivered");
                         holder.status.setText("Delivered");
+
                         Toast.makeText(context,"Status changed to delivered.",Toast.LENGTH_LONG).show();
                     }
                 }).setNegativeButton("Pending", new DialogInterface.OnClickListener() {
@@ -83,28 +85,31 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     }
 
     public void setOrderStatus(MyViewHolder holder,String s){
-        String nm = holder.name.toString();
-        String dt = holder.date.toString();
+        String nm = holder.name.getText().toString();
+        String dt = holder.date.getText().toString();
         DatabaseReference reference= FirebaseDatabase.getInstance().getReference("orders");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    for(DataSnapshot snap:dataSnapshot.getChildren()){
+
+                    for(DataSnapshot snap:dataSnapshot.getChildren())
+                    {
+
                         String n= String.valueOf(snap.child("name").getValue());
                         String d= String.valueOf(snap.child("date").getValue());
-                        if(nm.equals(n) & dt.equals(d)){
+                        if(nm.equals(n) && dt.equals(d)) {
                             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("orders");
-                            if(s.equals("Delivered")) {
-                                ref.child(d).child(snap.getKey()).child("status").setValue(s);
-                            }
-                            else {
+                            if (s.equals("Delivered")) {
+                                ref.child(d).child(snap.getKey()).child("status").setValue("Delivered");
+                            } else {
                                 ref.child(d).child(snap.getKey()).child("status").setValue("Pending");
                             }
                         }
+                        }
                     }
                 }
-            }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

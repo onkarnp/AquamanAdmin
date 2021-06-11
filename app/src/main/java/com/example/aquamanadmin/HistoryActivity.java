@@ -25,6 +25,7 @@ public class HistoryActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     MyAdapter myAdapter;
     ArrayList<Orderinfo> list;
+    String key;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +42,33 @@ public class HistoryActivity extends AppCompatActivity {
         myAdapter = new MyAdapter(this,list);
         recyclerView.setAdapter(myAdapter);
 
+
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String Name=name.getText().toString();
+                DatabaseReference ref= FirebaseDatabase.getInstance().getReference("users");
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                        for(DataSnapshot snapshot:datasnapshot.getChildren())
+                        {
+                           if(String.valueOf(snapshot.child("fullName").getValue()).equals(Name))
+                           {
+                               key=snapshot.getKey();
+                               break;
+                           }
+                        }
+                        myAdapter.notifyDataSetChanged();
+
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
                 DatabaseReference reference= FirebaseDatabase.getInstance().getReference("orders");
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -53,9 +77,8 @@ public class HistoryActivity extends AppCompatActivity {
                         for(DataSnapshot snapshot:datasnapshot.getChildren())
                         {
                             for(DataSnapshot snap:snapshot.getChildren()) {
-
-                                String n= String.valueOf(snap.child("name").getValue());
-                                if(n.equals(Name))
+                                String n=snap.getKey();
+                                if(n.equals(key))
                                 {
                                     Orderinfo info=snap.getValue(Orderinfo.class);
                                     String s = "Name:" + info.getName() + "\nDate:" + info.getDate() + "\n" + "Price:" + info.getPrice() + "\n" + "Status:" + info.getStatus() + "\n" + "Summary:" + info.getSummary() + "\nAddress:" + info.getAddress();

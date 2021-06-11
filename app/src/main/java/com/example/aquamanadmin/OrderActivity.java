@@ -74,8 +74,33 @@ public class OrderActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String dateString = date.getText().toString();
-                if(dateString.isEmpty()){
-                    showError(date,"Empty field is not allowed.");
+                if(dateString.isEmpty())
+                {
+                    DatabaseReference reference= FirebaseDatabase.getInstance().getReference("orders");
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                            list.clear();
+                            for(DataSnapshot snapshot:datasnapshot.getChildren())
+                            {
+                                for(DataSnapshot snap:snapshot.getChildren())
+                                {
+                                    if(String.valueOf(snap.child("status").getValue()).equals("Pending"))
+                                    {
+                                        Orderinfo info = snap.getValue(Orderinfo.class);
+                                        list.add(info);
+                                    }
+                                }
+                            }
+                            myAdapter.notifyDataSetChanged();
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                     return;
                 }
                 DatabaseReference reference= FirebaseDatabase.getInstance().getReference("orders");
