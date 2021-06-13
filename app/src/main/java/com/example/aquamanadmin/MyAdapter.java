@@ -74,7 +74,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                         ///Function  to change status in the database
                         setOrderStatus(holder,"Pending");
                         holder.status.setText("Pending");
-                        Toast.makeText(context,"Status changed to delivered.",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"Status changed to Pending.",Toast.LENGTH_LONG).show();
                     }
                 });
                 alertDialogBuilder.show();
