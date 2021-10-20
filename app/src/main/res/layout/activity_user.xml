@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/wellfleet"
-                android:text="All Users List"
+                android:text="@string/all_users_list"
                 android:textColor="#FFFFFF"
                 android:textSize="25sp"
                 android:textStyle="bold"

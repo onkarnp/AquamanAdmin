@@ -39,7 +39,7 @@
                 android:layout_toRightOf="@id/logo"
                 android:fontFamily="@font/bungee"
                 android:includeFontPadding="false"
-                android:text="Admin's\nDashboard"
+                android:text="Admin\'s\nDashboard"
                 android:textColor="#FBF8F8"
                 android:textSize="25sp" />
 
@@ -102,8 +102,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
-                        android:contentDescription="profileText"
-                        android:text="Profile"
+                        android:contentDescription="@string/profiletext"
+                        android:text="@string/profile"
                         android:textColor="#0353F4"
                         android:textSize="20sp" />
 
@@ -135,7 +135,7 @@
                         android:id="@+id/orderIcon"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:contentDescription="orderIcon"
+                        android:contentDescription="@string/ordericon"
                         android:src="@drawable/order1" />
 
                     <TextView
@@ -143,8 +143,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
-                        android:contentDescription="Orders"
-                        android:text="All Orders"
+                        android:contentDescription="@string/orders"
+                        android:text="@string/all_orders"
                         android:textColor="#0353F4"
                         android:textSize="20sp" />
 
@@ -175,7 +175,7 @@
                         android:id="@+id/historyIcon"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:contentDescription="historyIcon"
+                        android:contentDescription="@string/historyicon"
                         android:src="@drawable/history" />
 
                     <TextView
@@ -183,8 +183,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
-                        android:contentDescription="History"
-                        android:text="History"
+                        android:contentDescription="@string/history"
+                        android:text="@string/history"
                         android:textColor="#0353F4"
                         android:textSize="20sp" />
 
@@ -223,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
                         android:contentDescription="@string/Profile"
-                        android:text="All Users"
+                        android:text="@string/all_users"
                         android:textColor="#0353F4"
                         android:textSize="20sp" />
 
@@ -262,8 +262,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
-                        android:contentDescription="AboutUs"
-                        android:text="About Us"
+                        android:contentDescription="@string/aboutus"
+                        android:text="@string/about_us"
                         android:textColor="#0353F4"
                         android:textSize="20sp" />
 
@@ -296,15 +296,15 @@
                         android:id="@+id/logoutIcon"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:contentDescription="logoutIcon"
+                        android:contentDescription="@string/logouticon"
                         android:src="@drawable/logout" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
-                        android:contentDescription="LogOut"
-                        android:text="LogOut"
+                        android:contentDescription="@string/logout"
+                        android:text="@string/logout"
                         android:textColor="#0353F4"
                         android:textSize="20sp" />
 
@@ -335,7 +335,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:padding="10dp"
-                android:text="Don't let life slip down the drain."
+                android:text="Don\'t let life slip down the drain."
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
